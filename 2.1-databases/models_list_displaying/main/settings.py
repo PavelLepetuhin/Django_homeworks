@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+password_DB = os.environ.get('password_DB')
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -55,6 +57,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'netology_models_list',
+        'USER': 'postgres',
+        'PASSWORD': password_DB,
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -119,3 +123,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
