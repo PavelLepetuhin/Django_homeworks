@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>
+      {% block title %}{% endblock %}
+    </title>
       <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.css" %}"  media="screen,projection"/>
@@ -13,7 +15,23 @@
   </head>
 
   <body>
-    {% block content %}{% endblock %}
+
+    {% block content %}
+    <div class="container">
+      <div class="book col-md-4">
+      <h1>{{ book.name }}</h1>
+      <p>Автор: {{ book.author }}</p>
+      <p>Дата публикации: {{ book.pub_date }}</p>
+      </div>
+
+    </div>
+    {% endblock %}
+    {% if page.nas_previous %}
+        <a href="?page={{ page.previous_page_number }}">⟵</a>
+    {% endif %}
+    {% if page.has_next %}
+      <a href="?page={{ page.next_page_number }}">⟶</a>
+    {% endif %}
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>

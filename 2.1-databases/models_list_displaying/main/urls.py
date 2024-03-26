@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-from books.views import book_list, book_list_by_date
+from . import utils
+from books.views import book_list, book_list_by_date, book_detail
 
 urlpatterns = [
+    path('', book_list, name='books'),
+    path('posts/<pub_date>/', book_list_by_date, name='book_list_by_date'),
+    path('book/<pub_date>/', book_detail, name='book_detail'),
     path('admin/', admin.site.urls),
-    path('books/', book_list, name='books_list'),
-    path('books/<str:pub_date>/', book_list_by_date, name='books_by_date'),
 ]
+
+# path('posts/<date:pud_date>/', book_list_by_date, name='book_list_by_date'),
